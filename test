@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Dashboard | Défense en Profondeur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* CSS intégré pour le style du tableau de bord */
+        body {
+            background-color: #0d1117; /* Fond sombre de GitHub/Cyber */
+            color: #c9d1d9; /* Texte clair */
+            font-family: 'Consolas', monospace; /* Police technique */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            background-color: #161b22;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid #30363d;
+        }
+
+        h1 {
+            color: #58a6ff; /* Bleu éclatant */
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 40px 20px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .card {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            margin: 15px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+            border-color: #58a6ff;
+        }
+
+        .card-header {
+            color: #2ea44f; /* Vert pour Succès */
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-header i {
+            margin-right: 10px;
+        }
+
+        .mitigation-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.9em;
+        }
+
+        .mitigation-list li {
+            padding: 5px 0;
+            border-bottom: 1px dashed #30363d;
+        }
+
+        .mitigation-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Effet de terminal clignotant */
+        #typing-text {
+            color: #58a6ff;
+            font-size: 1.2em;
+            margin-top: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #58a6ff; /* Curseur */
+            animation: 
+                typing 4s steps(40, end),
+                blink-caret 0.75s step-end infinite;
+            width: 0;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #58a6ff; }
+        }
+
+        /* Style pour les IoC (Indicateurs de Compromission) */
+        .ioc-status {
+            color: #f85149; /* Rouge pour alerte/compromis */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><i class="fas fa-shield-alt"></i> CYBER DASHBOARD : PROJET DE DÉFENSE</h1>
+        <div id="typing-text">Analyse des scénarios d'attaques en cours...</div>
+    </header>
+
+    <div class="container">
+        
+        <div class="card" id="scenario-1">
+            <div class="card-header"><i class="fas fa-envelope-open-text"></i> SCÉNARIO 1 : PHISHING CIBLÉ</div>
+            <p><strong>Menace :</strong> Vol de données financières via macro (.docm).</p>
+            <p><strong>Statut :</strong> <span class="ioc-status">ALERTE ROUGE</span></p>
+            <ul class="mitigation-list">
+                <li><i class="fas fa-check-circle"></i> Accès Initial : M1021 (Restrict Web Content)</li>
+                <li><i class="fas fa-check-circle"></i> Exécution : M1040 (ASR/Behavior Prevention)</li>
+                <li><i class="fas fa-check-circle"></i> C2 : M1037 (Filter Network Traffic)</li>
+                <li><i class="fas fa-check-circle"></i> Exfiltration : M1057 (DLP)</li>
+            </ul>
+        </div>
+
+        <div class="card" id="scenario-2">
+            <div class="card-header"><i class="fas fa-cubes"></i> SCÉNARIO 2 : SUPPLY CHAIN</div>
+            <p><strong>Menace :</strong> Update malveillant sur un binaire signé.</p>
+            <p><strong>Statut :</strong> <span class="ioc-status">COMPROMIS</span></p>
+            <ul class="mitigation-list">
+                <li><i class="fas fa-check-circle"></i> Exécution/Persistance : M1022 (Restrict Permissions)</li>
+                <li><i class="fas fa-check-circle"></i> C2 : M1037 (Filter Network Traffic)</li>
+                <li><i class="fas fa-check-circle"></i> Détection C2 : M1031 (Network IPS)</li>
+                <li><i class="fas fa-check-circle"></i> Isolation : M1030 (Network Segmentation)</li>
+            </ul>
+        </div>
+
+        <div class="card" id="scenario-3">
+            <div class="card-header"><i class="fas fa-cloud"></i> SCÉNARIO 3 : OAUTH CLOUD</div>
+            <p><strong>Menace :</strong> Consentement OAuth & Exfiltration Drive/Mailbox.</p>
+            <p><strong>Statut :</strong> <span style="color: yellow;">SURVEILLANCE</span></p>
+            <ul class="mitigation-list">
+                <li><i class="fas fa-check-circle"></i> Accès Initial : M1017 (User Training)</li>
+                <li><i class="fas fa-check-circle"></i> Persistance : M1042 (Disable User Consent)</li>
+                <li><i class="fas fa-check-circle"></i> Détection : M1047 (Audit/API Logs)</li>
+                <li><i class="fas fa-check-circle"></i> Exfiltration : M1057 (DLP)</li>
+            </ul>
+        </div>
+
+        <div class="card" id="team-info">
+            <div class="card-header" style="color: #ffe066;"><i class="fas fa-users"></i> ÉQUIPE DE DÉFENSE</div>
+            <p><strong>Projet :</strong> Rapport Défense en Profondeur</p>
+            <ul class="mitigation-list">
+                <li>GUILLELMET, Mathys</li>
+                <li>FORGET, Candice</li>
+                <li>FOURMON, Keryann</li>
+                <li>RECROSIO, Loris</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        // Script pour un petit effet d'animation de statut
+        const statuses = document.querySelectorAll('.ioc-status');
+        const colors = {
+            'ALERTE ROUGE': '#f85149',
+            'COMPROMIS': '#f85149',
+            'SURVEILLANCE': 'yellow'
+        };
+
+        statuses.forEach(status => {
+            // Fait clignoter les statuts critiques
+            if (status.textContent === 'ALERTE ROUGE' || status.textContent === 'COMPROMIS') {
+                status.style.animation = 'blink 1.5s step-end infinite';
+            }
+        });
+        
+        // Ajout de l'animation CSS pour le clignotement des statuts critiques (à ajouter au <style>)
+        const styleSheet = document.createElement("style");
+        styleSheet.type = "text/css";
+        styleSheet.innerText = `
+            @keyframes blink {
+                from, to { color: ${colors['ALERTE ROUGE']}; }
+                50% { color: transparent; }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    </script>
+</body>
+</html>
